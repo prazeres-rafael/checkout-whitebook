@@ -1,7 +1,7 @@
-export default function Home() {
-  return (
-    <main>
-      <div>oi</div>
-    </main>
-  );
-}
+import CheckoutWhitebook from "@/features/CheckoutWhitebook";
+
+const Home = () => {
+  return <CheckoutWhitebook />;
+};
+
+export default Home;

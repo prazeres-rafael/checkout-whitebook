@@ -18,7 +18,9 @@ export default function RootLayout({
       <head>
         <link rel="icon" href="/svg/logo.svg" />
       </head>
-      <body className={dmSans.className}>{children}</body>
+      <body className={dmSans.className}>
+        <main>{children}</main>
+      </body>
     </html>
   );
 }
