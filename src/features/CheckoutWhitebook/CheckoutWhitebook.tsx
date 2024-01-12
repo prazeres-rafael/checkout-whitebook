@@ -2,7 +2,7 @@ import { Grid } from "@mui/material";
 
 import Box from "@mui/material/Box";
 
-import Header from "@/components/Header";
+import { Header } from "@/components";
 import { PaymentsFields, PlansSelect } from "./components";
 
 const CheckoutWhitebook = () => {
