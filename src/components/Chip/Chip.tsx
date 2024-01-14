@@ -1,16 +1,18 @@
 import Chip, { ChipProps } from "@mui/material/Chip";
 
+import { colors } from "@/utils/tokens";
+
 const BaseChip = ({ color = "default", ...props }: ChipProps) => {
   const customStyles = (() => {
     switch (color) {
       case "warning":
         return {
-          backgroundColor: "#F5850B",
+          backgroundColor: colors.secondary,
           borderRadius: "9px",
           color: "#fff",
           fontSize: "10px",
 
-          "& > span": { padding: "4px 5px" },
+          "& > span": { padding: "4px 12px" },
         };
       default:
         return {
