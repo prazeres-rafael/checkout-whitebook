@@ -10,10 +10,10 @@ const CheckoutWhitebook = () => {
     <Box>
       <Header />
       <Grid container>
-        <Grid item xs={12} md={6}>
+        <Grid item xs={12} md={6} display="flex" justifyContent="center">
           <PaymentsFields />
         </Grid>
-        <Grid item xs={12} md={6}>
+        <Grid item xs={12} md={6} display="flex" justifyContent="center">
           <PlansSelect />
         </Grid>
       </Grid>

@@ -9,15 +9,8 @@ const Header = () => {
         src="/svg/left-arrow.svg"
         height={13}
         width={8}
-        style={{ marginRight: "auto" }}
       />
-      <ImageDisplay
-        alt="Logo"
-        src="/svg/logo.svg"
-        height={29}
-        width={41}
-        style={{ marginRight: "auto" }}
-      />
+      <ImageDisplay alt="Logo" src="/svg/logo.svg" height={29} width={41} />
     </Box>
   );
 };
