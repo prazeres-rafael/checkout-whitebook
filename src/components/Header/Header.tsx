@@ -3,7 +3,11 @@ import { ImageDisplay } from "./Header.styles";
 
 const Header = () => {
   return (
-    <Box sx={{ height: 90 }} display="flex" alignItems="center">
+    <Box
+      sx={{ height: 90, margin: "0 68px" }}
+      display="flex"
+      alignItems="center"
+    >
       <ImageDisplay
         alt="Return Click"
         src="/svg/left-arrow.svg"
