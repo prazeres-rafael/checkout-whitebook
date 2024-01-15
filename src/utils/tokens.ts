@@ -5,6 +5,8 @@ export const colors = {
         1: '#151516',
         2: '#E1DEE8',
         3: '#C9C5D4',
+        4: '#666173',
+        5: '#F4F3F6',
     },
 };
 export const spacing = {
