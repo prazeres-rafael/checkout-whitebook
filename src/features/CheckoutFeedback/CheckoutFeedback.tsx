@@ -1,8 +1,9 @@
 import Image from "next/image";
 import Box from "@mui/material/Box";
 
-import { Card, Header, Typography } from "@/components";
+import { Button, Header, Typography } from "@/components";
 import { colors, spacing } from "@/utils/tokens";
+import { PlanResume } from "./components";
 
 const CheckoutWhitebook = () => {
   return (
@@ -21,64 +22,23 @@ const CheckoutWhitebook = () => {
         <Typography
           variant="body2"
           mt={spacing[2]}
+          mb={spacing[10]}
           color={colors.grey[3]}
           fontSize="16px"
           textAlign="center"
+          width={220}
         >
           Sua assinatura foi realizada com sucesso.
         </Typography>
-        <Card isFeedbackCard>
-          <Box
-            display="flex"
-            justifyContent="space-between"
-            alignItems="center"
-            sx={{
-              backgroundColor: colors.grey[5],
-              borderRadius: "15px",
-              padding: "16px 20px",
-            }}
-          >
-            <Image
-              alt="Sucesso na compra"
-              src="/svg/star-icon.svg"
-              height={40}
-              width={40}
-            />
-            <Box>
-              <Typography
-                variant="body2"
-                color={colors.primary}
-                fontSize="16px"
-                textAlign="right"
-              >
-                Anual | Parcelado
-              </Typography>
-              <Typography
-                variant="body2"
-                color={colors.primary}
-                textAlign="right"
-              >
-                R$ 479,90 | 10x R$ 47,99
-              </Typography>
-            </Box>
-          </Box>
-          <Box display="flex" justifyContent="space-between">
-            <Typography variant="body2" mt={spacing[2]} color={colors.grey[3]}>
-              E-mail
-            </Typography>
-            <Typography variant="body2" mt={spacing[2]} width={220}>
-              fulano@cicrano.com.br
-            </Typography>
-          </Box>
-          <Box display="flex" justifyContent="space-between">
-            <Typography variant="body2" mt={spacing[2]} color={colors.grey[3]}>
-              CPF
-            </Typography>
-            <Typography variant="body2" mt={spacing[2]} width={220}>
-              000.000.000-00
-            </Typography>
-          </Box>
-        </Card>
+        <PlanResume />
+        <Box mt="80px">
+          <Button kind="secondary" variant="contained" type="submit" fullWidth>
+            Gerenciar assinatura
+          </Button>
+          <Button variant="contained" type="submit" fullWidth>
+            IR PARA A HOME
+          </Button>
+        </Box>
       </Box>
     </Box>
   );
