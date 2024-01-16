@@ -10,7 +10,7 @@ const customThemeFont = createTheme({
   },
 });
 
-const Home = () => {
+const CheckoutWhitebookPage = () => {
   return (
     <ThemeProvider theme={customThemeFont}>
       <CheckoutWhitebook />
@@ -18,4 +18,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default CheckoutWhitebookPage;

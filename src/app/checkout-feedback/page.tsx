@@ -1,5 +1,7 @@
-const CheckoutFeedback = () => {
-  return <div>checkout-feedback</div>;
+import CheckoutFeedback from "@/features/CheckoutFeedback";
+
+const CheckoutFeedbackPage = () => {
+  return <CheckoutFeedback />;
 };
 
-export default CheckoutFeedback;
+export default CheckoutFeedbackPage;
