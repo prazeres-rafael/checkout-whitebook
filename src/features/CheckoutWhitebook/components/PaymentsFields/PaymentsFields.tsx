@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form";
 import Box from "@mui/material/Box";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 import { colors, spacing } from "@/utils/tokens";
 import { Button, Select, TextField, Typography } from "@/components";
@@ -8,6 +9,7 @@ import { FormPaymentsData } from "./PaymentsFields.types";
 
 /* Todo:
   - [ ] Add mask to inputs fields
+  - [ ] Add error handling
 */
 
 const PaymentsFields = () => {
@@ -17,6 +19,7 @@ const PaymentsFields = () => {
     control,
     formState: { errors },
   } = useForm<FormPaymentsData>();
+  const router = useRouter();
 
   const onSubmit = async (data: FormPaymentsData) => {
     const requestBody = {
@@ -45,7 +48,7 @@ const PaymentsFields = () => {
       );
 
       if (response.ok) {
-        console.log("Payment submitted successfully");
+        router.push("/checkout-feedback");
       } else {
         console.log("Failed to submit payment");
       }
