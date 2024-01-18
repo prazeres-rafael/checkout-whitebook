@@ -1,9 +1,9 @@
 import { Grid } from "@mui/material";
-
 import Box from "@mui/material/Box";
 
 import { Header } from "@/components";
 import { PaymentsFields, PlansSelect } from "./components";
+import { isMobile } from "@/utils/isMobile";
 
 const CheckoutWhitebook = () => {
   return (
@@ -11,10 +11,10 @@ const CheckoutWhitebook = () => {
       <Header />
       <Grid container>
         <Grid item xs={12} md={6} display="flex" justifyContent="center">
-          <PaymentsFields />
+          {isMobile() ? <PlansSelect /> : <PaymentsFields />}
         </Grid>
         <Grid item xs={12} md={6} display="flex" justifyContent="center">
-          <PlansSelect />
+          {isMobile() ? <PaymentsFields /> : <PlansSelect />}
         </Grid>
       </Grid>
     </Box>

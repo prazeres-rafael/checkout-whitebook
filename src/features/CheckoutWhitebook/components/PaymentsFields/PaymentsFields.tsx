@@ -6,15 +6,56 @@ import { colors, spacing } from "@/utils/tokens";
 import { Button, Select, TextField, Typography } from "@/components";
 import { FormPaymentsData } from "./PaymentsFields.types";
 
-const PaymentsFields = () => {
-  const { register, handleSubmit, control } = useForm<FormPaymentsData>();
+/* Todo:
+  - [ ] Add mask to inputs fields
+*/
 
-  const onSubmit = (data: FormPaymentsData) => {
-    console.log(data);
+const PaymentsFields = () => {
+  const {
+    register,
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useForm<FormPaymentsData>();
+
+  const onSubmit = async (data: FormPaymentsData) => {
+    const requestBody = {
+      couponCode: data.coupon || null,
+      creditCardCPF: data.cpf,
+      creditCardCVV: data.cvv,
+      creditCardExpirationDate: data.expirationDate,
+      creditCardHolder: data.cardHolderName,
+      creditCardNumber: data.cardNumber,
+      gateway: "iugu",
+      installments: parseInt(data.installment),
+      offerId: 18,
+      userId: 1,
+    };
+
+    try {
+      const response = await fetch(
+        "https://private-0ced4-pebmeddesafiofrontend.apiary-mock.com/subscription",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(requestBody),
+        }
+      );
+
+      if (response.ok) {
+        console.log("Payment submitted successfully");
+      } else {
+        console.log("Failed to submit payment");
+      }
+    } catch (error) {
+      console.log("An error occurred while submitting payment:", error);
+    }
   };
 
   return (
-    <Box width="330px">
+    <Box width="330px" data-testid="payments-fields">
       <Box mb={5}>
         <Box mb={spacing[5]}>
           <Typography variant="h4" mb={spacing[2]}>
@@ -56,7 +97,16 @@ const PaymentsFields = () => {
             variant="standard"
             margin="normal"
             placeholder="0000 0000 0000 0000"
-            register={register("cardNumber")}
+            register={register("cardNumber", {
+              required: "Campo obrigatório",
+              pattern: {
+                value:
+                  /^(?:4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14}|6(?:011|5[0-9][0-9])[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|(?:2131|1800|35\d{3})\d{11})$/,
+                message: "Número de cartão inválido",
+              },
+            })}
+            error={!!errors.cardNumber}
+            helperText={errors.cardNumber?.message}
           />
           <Box display="flex" gap="50px">
             <TextField
@@ -64,14 +114,30 @@ const PaymentsFields = () => {
               variant="standard"
               margin="normal"
               placeholder="MM/AA"
-              register={register("expirationDate")}
+              register={register("expirationDate", {
+                required: "Campo obrigatório",
+                pattern: {
+                  value: /^(0[1-9]|1[0-2])\/?([0-9]{2})$/,
+                  message: "Data de validade inválida",
+                },
+              })}
+              error={!!errors.expirationDate}
+              helperText={errors.expirationDate?.message}
             />
             <TextField
               label="CVV"
               variant="standard"
               margin="normal"
               placeholder="000"
-              register={register("cvv")}
+              register={register("cvv", {
+                required: "Campo obrigatório",
+                pattern: {
+                  value: /^[0-9]{3}$/,
+                  message: "CVV inválido",
+                },
+              })}
+              error={!!errors.cvv}
+              helperText={errors.cvv?.message}
             />
           </Box>
           <TextField
@@ -79,14 +145,30 @@ const PaymentsFields = () => {
             variant="standard"
             margin="normal"
             placeholder="Seu nome"
-            register={register("cardHolderName")}
+            register={register("cardHolderName", {
+              required: "Campo obrigatório",
+              pattern: {
+                value: /^[A-Za-z\s]+$/,
+                message: "Nome inválido",
+              },
+            })}
+            error={!!errors.cardHolderName}
+            helperText={errors.cardHolderName?.message}
           />
           <TextField
             label="CPF"
             variant="standard"
             margin="normal"
             placeholder="000.000.000-00"
-            register={register("cpf")}
+            register={register("cpf", {
+              required: "Campo obrigatório",
+              pattern: {
+                value: /^\d{3}\.\d{3}\.\d{3}-\d{2}$/,
+                message: "CPF inválido",
+              },
+            })}
+            error={!!errors.cpf}
+            helperText={errors.cpf?.message}
           />
           <TextField
             label="Cupom"
@@ -100,12 +182,22 @@ const PaymentsFields = () => {
             id="demo-simple-select-standard"
             defaultValue={0}
             label="Número de parcelas"
-            register={register("installment")}
+            register={register("installment", {
+              required: "Campo obrigatório",
+              validate: (value) =>
+                value !== "0" || "Selecione o número de parcelas",
+            })}
+            error={!!errors.installment}
             options={["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]}
           />
         </Box>
         <Box mt="40px">
-          <Button variant="contained" type="submit" fullWidth>
+          <Button
+            variant="contained"
+            type="submit"
+            fullWidth
+            data-testid="button-submit"
+          >
             Finalizar pagamento
           </Button>
         </Box>

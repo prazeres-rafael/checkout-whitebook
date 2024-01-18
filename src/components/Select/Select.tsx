@@ -24,15 +24,15 @@ const BaseSelect = ({
         sx={{
           color: colors.grey[4],
           fontSize: "12px",
-          "-webkit-transform": "none",
+          WebkitTransform: "none",
           transform: "none",
         }}
       >
         {label}
       </InputLabel>
       <Select
-        labelId="select-standard-label"
-        id="select-standard"
+        labelId="demo-simple-select-standard-label"
+        id="demo-simple-select-standard"
         placeholder="Selecionar"
         {...register}
         {...props}

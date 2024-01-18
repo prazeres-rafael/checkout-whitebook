@@ -21,7 +21,7 @@ const BaseTextField = ({ register, ...props }: BaseTextFieldProps) => {
         "& .MuiFormLabel-root": {
           color: colors.grey[4],
           fontSize: "12px",
-          "-webkit-transform": "none",
+          WebkitTransform: "none",
           transform: "none",
         },
 

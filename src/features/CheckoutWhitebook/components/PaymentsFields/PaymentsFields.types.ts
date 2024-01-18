@@ -6,5 +6,5 @@ export type FormPaymentsData = {
   cardHolderName: string;
   cpf: string;
   coupon: string;
-  installment: number;
+  installment: string;
 };
