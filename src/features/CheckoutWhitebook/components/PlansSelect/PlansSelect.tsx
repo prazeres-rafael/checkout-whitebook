@@ -37,7 +37,7 @@ const PlansSelect = () => {
       </Box>
       {loading ? (
         <Box display="flex" justifyContent="center" mb={spacing[5]}>
-          <CircularProgress />
+          <CircularProgress data-testid="loading-spinner" />
         </Box>
       ) : (
         <Box mb={spacing[5]}>
