@@ -1,6 +1,7 @@
 import Card, { CardProps } from "@mui/material/Card";
 
 import { colors } from "@/utils/tokens";
+import { isMobile } from "@/utils/isMobile";
 
 type BaseCardProps = {
   isFeedbackCard?: boolean;
@@ -8,13 +9,13 @@ type BaseCardProps = {
 
 const BaseCard = ({ isFeedbackCard = false, ...props }: BaseCardProps) => {
   const feedbackCardStyles = {
-    width: "343px",
+    width: isMobile() ? "100%" : "343px",
     padding: "16px",
     boxShadow: "0px 4px 20px 0px rgba(0, 0, 0, 0.05)",
   };
 
   const defaultStyles = {
-    width: "330px",
+    width: isMobile() ? "100%" : "330px",
     padding: "20px",
     border: `1px solid ${colors.primary}`,
   };
